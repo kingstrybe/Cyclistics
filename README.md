@@ -40,7 +40,7 @@ The data is organized in monthly csv files. The most recent twelve months of dat
 The data is collected directly by Motivate, Inc., the company that runs the Cyclistic Bike Share program for the City of Chicago. The data is comprehensive in that it consists of data for all the rides taken on the system and is not just a sample of the data. The data is current. It is released monthly and, as of August 2021, was current to July 2021. The City of Chicago makes the data available to the public.
 
 ## Licensing, privacy, security, and accessibility
-This data is anonymized as it has been stripped of all identifying information. This ensures privacy, but it limits the extent of the analysis possible. There is not enough data to determine if casual riders are repeat riders or if casual riders are residents of the Chicago area. The data is released under this license.
+This data is anonymized as it has been stripped of all identifying information. This ensures privacy, but it limits the extent of the analysis possible. There is not enough data to determine if casual riders are repeat riders or if casual riders are residents of the Chicago area. The data is released under this [license](https://ride.divvybikes.com/data-license-agreement).
 
 ## Ability of Data to be used to answer Business Question
 One of the fields in the data records the type of rider; casual riders pay for individual or daily rides and member riders purchase annual subscription. This information is crucial to be able to determine differences between how the two groups use the bike share program.
