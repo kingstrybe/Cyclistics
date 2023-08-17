@@ -9,11 +9,17 @@ Customers who purchase single-ride or full-day passes are referred to as casual 
 
 ## Scenario
 
-You are a junior data analyst in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The marketing director believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into members. However, Cyclistic executives must approve the recommendations, supplemented with compelling data insights and professional data visualizations.
+Cyclistic is a fictional bike sharing company located in Chicago. It operates a fleet of more than 5,800 bicycles which can be accessed from over 600 docking stations across the city. Bikes can be borrowed from one docking station, ridden, then returned to any docking station in the system Over the years marketing campaigns have been broad and targeted a cross-section of potential users. Data analysis has shown that riders with an annual membership are more profitable than casual riders. The marketing team are interested in creating a campaign to encourage casual riders to convert to members.
+The marketing analyst team would like to know how annual members and casual riders differ, why casual riders would buy a membership, and how Cyclistic can use digital media to influence casual riders to become members. The team is interested in analyzing the Cyclistic historical bike trip data to identify trends in the usage of bikes by casual and member riders
 
-## Purpose
+# I. Ask
+## Business Objective 
 
-Cyclistic’s finance analysts have concluded that annual members are much more profitable than casual riders. Although the pricing flexibility helps Cyclistic attract more customers, Moreno believes that maximizing the number of members will be the key to future growth. Moreno believes there is a reasonable chance to convert casual riders into members. She notes that casual riders appear aware of the Cyclistic program and have chosen Cyclistic for their mobility needs.
+To increase profitability by converting casual riders to annual members via a targeted marketing campaign.
+
+## Business Task for Junior Analyst
+
+The junior analyst has been tasked with answering this question: How do annual members and casual riders use Cyclistic bikes differently?
 
 ## Stakeholders
 
@@ -22,30 +28,92 @@ Cyclistic’s finance analysts have concluded that annual members are much more 
 * **Cyclistic marketing analytics team:** A team of data analysts who are responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy.
 * **Cyclistic executive team:** The notoriously detail-oriented executive team will decide whether to approve the recommended marketing program.
 
-## Business Task
+# II. PREPARE
 
-The business task is to develop marketing strategies that convert existing casual riders into annual members. However, the marketing analyst team needs to understand how members and casual riders differ, why casual riders would buy a membership, and how digital media could affect their marketing tactics. Our team is interested in analyzing the Cyclistic historical bike trip data to identify trends.
+## Where is Data Located?
+The data used for this analysis were obtained from the Motivate, a company employed by the City of Chicago to collect data on bike share usage.
 
-## Data
+## How is the Data Organized?
+The data is organized in monthly csv files. The most recent twelve months of data (January - December 2021) were used for this project. The files consist of 13 columns containing information related to ride id, ridership type, ride time, start location and end location and geographic coordinates, etc.
 
-In an Amazon Web Server (AWS), Cyclistic stores the data in zipped comma-separated values (CSV) files. For the years 2020-2023, Cyclistic split the data by months. Prior to 2020, Cyclistic split the data by yearly quarters. The company updates the data once a month.
+## Credibility of the Data
+The data is collected directly by Motivate, Inc., the company that runs the Cyclistic Bike Share program for the City of Chicago. The data is comprehensive in that it consists of data for all the rides taken on the system and is not just a sample of the data. The data is current. It is released monthly and, as of August 2021, was current to July 2021. The City of Chicago makes the data available to the public.
 
-In this case study, I’m focusing on the recent monthly data, specifically from January 2022 - December 2022. Since I am working with first-party data from a recent year, the data is original, current, and cited. Furthermore, the data is anonymized since the selection doesn't include personally identifiable information. 
-The data partially satisfies the reliable and comprehensive. The data is partially incomplete for about 22.9% of trips, specifically for the attribute data of the stations.
+## Licensing, privacy, security, and accessibility
+This data is anonymized as it has been stripped of all identifying information. This ensures privacy, but it limits the extent of the analysis possible. There is not enough data to determine if casual riders are repeat riders or if casual riders are residents of the Chicago area. The data is released under this license.
 
-## Deliverables
+## Ability of Data to be used to answer Business Question
+One of the fields in the data records the type of rider; casual riders pay for individual or daily rides and member riders purchase annual subscription. This information is crucial to be able to determine differences between how the two groups use the bike share program.
 
-Because of the limitations of the README file, I am attaching the deliverables below.
+## Problems with the data
+There are some problems with the data. Most of the the problems (duplicate records, missing fields, etc.) can be dealt with by data cleaning, but a couple of issues require further explanation.
 
-* Full report.
-* Documentation, Part I: Data Wrangling.
-* Documentation, Part II: Data Visualization.
+### Rideable-type Field
+The rideable_type field contains one of three values – Electric bike, Classic bike or Docked bike. Electric and Classic bikes seem self-explanatory, but what exactly a Docked bike is unclear. From a review of the data it seems that electric bikes were available to both types of users for the entire 12 month period; classic bikes were available to both groups of users but only from December 2, 2020 to July 31, 2021; and Docked Bikes were available to members from August 1, 2021 to January 13, 2022 and to casual users for the entire 12 months. For the purpose of this analysis these rideable types will not be used to segment the data or draw any conclusions about bike preferences as data collection for this variable is not consistent across the time period being analyzed.
 
-## Discussion
+### Latitude and Longitude
+There is also a challenge with the latitude and longitude coordinates for the stations. Each station is represented by a range of lat/long coordinates. The start/end latitude and longitude seem to indicate the location of a particular bike. Creating a list of popular stations is not difficult, but mapping the stations is more problematic. This was remedied by averaging the lat and long values for the stations before mapping. This resulted in the rides counts for a station matching the ride count for one set of lat/long coordinates.
 
-I theorize that members primarily use the Cyclistic bike-share program for transportation between and from essential tasks (i.e., work, errands, shopping, religious observation). For example, for the daily commute, the reliance on the bike-share program helps explain the peak participation in the early mornings and the evenings since members are completing a round trip. Because members expect short-distance travel throughout the year, members conserve their ride length, especially when punctuality weighs heavier in particular assignments (e.g., work, groceries).
+# III. PROCESS & CLEAN
 
-On the other hand, I theorize that casual riders are likelier to participate in recreational activities than members. For example, though casual riders could use the bike-share program for essential tasks, they are focusing on errands and recreational activities since they are usually active in the daytime and early evening on weekdays. However, the volume of trips by casual riders is exceptionally high on weekends because of the availability of recreational activities.
+## What tools are you choosing and why?
+For this project I choose to use RStudio Desktop to analyze and clean the data and Tableau to create the visualizations. The data set was too large to be processed in spreadsheets and RStudio Cloud.
+
+## Review of Data
+Data was reviewed to get an overall understanding of content of fields, data formats, and to ensure its integrity. The review of the data involved, checking column names across the 12 original files and checking for missing values, trailing white spaces, duplicate records, and other data anomalies.
+The review of the data revealed several problems:
+
+- Duplicate record ID numbers
+- Records with missing start or end stations
+- Records with very short or very long ride durations
+- Records for trips starting or ending at an administrative station (repair or testing station)
+
+Once the initial review was completed, all twelve files were loaded into four data frame (quarterly) and then into a single data frame. The resulting amalgamated file consisted of 4.731,081 rows with 13 columns of character and numeric data. This matched the number of records in the twelve monthly files.
+
+## Extraction of Data from Existing Fields
+To allow for more granular analysis of the data and more insights, several new columns were created and populated with data from the started_at column of date and time. These new columns were day, month, year, time and day of the week.
+
+Another column was created to contain the trip duration (length of each trip). The data for this column was created by calculating the difference in time between the start and end time of the ride. Another version of this column was then created to contain the trip duration in minutes.
+
+## Data Cleaning
+Duplicate records (based on the RIDE ID field) were removed. (209 records removed)
+
+alltrips_v2 <- distinct(alltrips, ride_id, .keep_all=TRUE)
+
+Records for trips less than 60 seconds (false starts) or longer than 24 hours were removed. Bikes out longer than 24 hours are considered stolen and the rider is charged for a replacement. (82,282 records removed)
+
+alltrips<- alltrips_v2[!(alltrips$ride_length<60 | alltrips$ride_length>86400),]
+
+Records with missing fields start_station, end_station, start/end lat/long fields were removed. (544,204 records removed)
+
+alltrips <- alltrips[!(is.na(alltrips$start_station_id) | is.na(alltrips$end_station_id) | is.na(alltrips$ride_id) | is.na(alltrips$rideable_type) | is.na(alltrips$started_at) | is.na(alltrips$ended_at) | is.na(alltrips$end_lat) | is.na(alltrips$end_lng)),]
+
+Initially the data set contained 4,731,081 records. Once data was cleaned, 4.101,243 records remained. 13.3% of the records were removed.
+
+# IV. ANALYZE
+Once the data was cleaned, analysis of the data was undertaken in RStudio to determine the following:
+
+- Mean, median, maximum and minimum ride duration (by rider type)
+- Average ride length by day and by rider type
+- Count of trips by rider type
+- Count of trips by bicycle type
+- Count of the number of start stations
+
+The cleaned data set was used to create a csv file that was exported from RStudio and imported into Tableau for further analysis and creation of visualizations.
+
+Tableau was used to further analyze the data and determine:
+
+- Ride duration
+- Times of Day for rides
+- Days of the week for rides
+- Months of the year of the rides
+- Top 20 start stations by user type
+- Top 20 end stations by user type
+
+# Summary of analysis
+From the analysis we can see that there are several key differences between casual and member riders.
+
+
 
 ## Recommendations
 
