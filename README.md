@@ -49,7 +49,7 @@ One of the fields in the data records the type of rider; casual riders pay for i
 There are some problems with the data. Most of the problems (duplicate records, missing fields, etc.) can be dealt with by data cleaning, but a couple of issues require further explanation.
 
 ### Rideable-type Field
-The rideable_type field contains one of three values – Electric bike, Classic bike, or Docked bike. Electric and Classic bikes seem self-explanatory, but what exactly a Docked bike is unclear. From a review of the data, it seems that electric bikes were available to both types of users for the entire 12-month period; classic bikes were available to both groups of users but only from December 2, 2020, to July 31, 2021; and Docked Bikes were available to members from August 1, 2021, to January 13, 2022, and to casual users for the entire 12 months. For the purpose of this analysis, these rideable types will not be used to segment the data or draw any conclusions about bike preferences as data collection for this variable is not consistent across the time period being analyzed.
+The rideable_type field contains one of three values – Electric bike, Classic bike, or Docked bike. Electric and Classic bikes seem self-explanatory, but what exactly a Docked bike is unclear. From a review of the data, it seems that electric bikes were available to both types of users for the entire 12-month period; classic bikes were available to both groups of users but only from December 2, 2020, to July 31, 2021; and Docked Bikes were available to members from August 1, 2021, to January 13, 2021, and to casual users for the entire 12 months. For the purpose of this analysis, these rideable types will not be used to segment the data or draw any conclusions about bike preferences as data collection for this variable is not consistent across the time period being analyzed.
 
 ### Latitude and Longitude
 There is also a challenge with the latitude and longitude coordinates for the stations. Each station is represented by a range of lat/long coordinates. The start/end latitude and longitude seem to indicate the location of a particular bike. Creating a list of popular stations is not difficult, but mapping the stations is more problematic. This was remedied by averaging the lat and long values for the stations before mapping. This resulted in the ride counts for a station matching the ride count for one set of lat/long coordinates.
@@ -60,15 +60,15 @@ There is also a challenge with the latitude and longitude coordinates for the st
 For this project, I chose to use RStudio Desktop to analyze and clean the data and Tableau to create the visualizations. The data set was too large to be processed in spreadsheets and RStudio Cloud.
 
 ## Review of Data
-Data was reviewed to get an overall understanding of content of fields, data formats, and to ensure its integrity. The review of the data involved, checking column names across the 12 original files and checking for missing values, trailing white spaces, duplicate records, and other data anomalies.
-The review of the data revealed several problems:
+Data was reviewed to get an overall understanding of the content of fields, and data formats, and to ensure its integrity. The review of the data involved, checking column names across the 12 original files and checking for missing values, trailing white spaces, duplicate records, and other data anomalies.
 
+The review of the data revealed several problems:
 - Duplicate record ID numbers
 - Records with missing start or end stations
 - Records with very short or very long ride durations
 - Records for trips starting or ending at an administrative station (repair or testing station)
 
-Once the initial review was completed, all twelve files were loaded into four data frame (quarterly) and then into a single data frame. The resulting amalgamated file consisted of 4.731,081 rows with 13 columns of character and numeric data. This matched the number of records in the twelve-monthly files.
+Once the initial review was completed, all twelve files were loaded into four data frames (quarterly) and then into a single data frame. The resulting amalgamated file consisted of 4.731,081 rows with 13 columns of character and numeric data. This matched the number of records in the twelve-monthly files.
 
 ## Extraction of Data from Existing Fields
 To allow for more granular analysis of the data and more insights, several new columns were created and populated with data from the started_at column of date and time. These new columns were day, month, year, time, and day of the week.
@@ -78,15 +78,16 @@ Another column was created to contain the trip duration (length of each trip). T
 ## Data Cleaning
 Duplicate records (based on the RIDE ID field) were removed. (209 records removed)
 
-alltrips_v2 <- distinct(alltrips, ride_id, .keep_all=TRUE)
+![Screenshot (180)](https://github.com/kingstrybe/kingstrybe/assets/124252840/888a813c-9241-4d01-88ef-96cf27951a33)
 
 Records for trips less than 60 seconds (false starts) or longer than 24 hours were removed. Bikes out longer than 24 hours are considered stolen and the rider is charged for a replacement. (82,282 records removed)
 
-alltrips<- alltrips_v2[!(alltrips$ride_length<60 | alltrips$ride_length>86400),]
+![Screenshot (181)](https://github.com/kingstrybe/kingstrybe/assets/124252840/a1b2e6cd-ae54-4f24-889f-b381948fa34e)
 
 Records with missing fields start_station, end_station, start/end lat/long fields were removed. (544,204 records removed)
 
-alltrips <- alltrips[!(is.na(alltrips$start_station_id) | is.na(alltrips$end_station_id) | is.na(alltrips$ride_id) | is.na(alltrips$rideable_type) | is.na(alltrips$started_at) | is.na(alltrips$ended_at) | is.na(alltrips$end_lat) | is.na(alltrips$end_lng)),]
+![Screenshot (182)](https://github.com/kingstrybe/kingstrybe/assets/124252840/89d9d265-2b7f-4aa1-82dd-042365c04cbe)
+
 
 Initially, the data set contained 4,731,081 records. Once data was cleaned, 4.101,243 records remained. 13.3% of the records were removed.
 
@@ -113,6 +114,38 @@ Tableau was used to analyze the data further and determine the following:
 # Summary of analysis
 From the analysis, we can see that there are several key differences between casual and member riders.
 
+From the analysis, we can see that there are several key differences between casual and member riders.
+
+# Number and Length of Rides
+Member riders take more trips than casual riders but casual riders take longer rides than member riders (Figure 1). Casual riders average 31.85 minutes per ride as opposed to 14.43 minutes for member riders (Figure 2). The total amount of time spent by casual riders is greater than by member riders (Figure 3).
+
+![Total length of rides by rider types](https://github.com/kingstrybe/kingstrybe/assets/124252840/32eba7a7-5fd2-48dc-b816-0fd9c023a2ee)
+Pie graph showing that member riders take about 56% of all rides.  Casual riders take 44%
+Figure 1.
+
+![Overview 1](https://github.com/kingstrybe/kingstrybe/assets/124252840/1ffc6827-9319-4974-98d1-d18f568db252)
+Graph showing casual riders trips take an average of 131.85 minutes and member riders trips take an average of 14.43 minutes.
+Figure 2.
+
+![Overview 2](https://github.com/kingstrybe/kingstrybe/assets/124252840/058ea18d-ca63-42fb-9063-a764d0023210)
+Figure 3.
+Trips by Time/Day/Month
+Graph showing start hours for casual and member riders.  Member riders have three peak times - the highest at 5 p.m., another peak at lunchtime, and another peak at 8 a.m.  The number of casual rides increases during the day and peaks at 5 pm
+Figure 4
+The number of trips made by casual riders increases over the day, peaking at 5 p.m. Member trips also peak at 5 p.m. but there are two smaller peaks earlier in the day at 8 a.m. and lunchtime, which corresponds with the work day.
+
+
+Figure 5.
+Figure 5 shows that weekend days are popular with casual riders whereas member rider trips are spread out more evenly throughout the week.
+
+
+Figure 6.
+The winter months (December, January, and February) see very few rides. The summer months are popular with both types of riders. July is the busiest month for casual riders.
+
+Station Usage
+Member and casual riders also differ in the stations that are popular for starting and ending their rides.
+
+Top starting and destination stations for casual riders cluster around tourist destinations within about 1 km of the lakefront from Lincoln Park in the north to the Field Museum in the south. Member riders' top stations are more spread out and reflect office locations.
 
 
 ## Recommendations
