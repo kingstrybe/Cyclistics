@@ -34,10 +34,10 @@ The junior analyst has been tasked with answering this question: How do annual m
 The data used for this analysis were obtained from Motivate, a company employed by the City of Chicago to collect data on bike share usage.
 
 ## How is the Data Organized?
-The data is organized in monthly CSV files. The most recent twelve months of data (January - December 2021) were used for this project. The files consist of 13 columns containing information related to ride id, ridership type, ride time, start location and end location, geographic coordinates, etc.
+The data is organized in monthly CSV files. The most recent twelve months of data (August 2020 – July 2021)  were used for this project. The files consist of 13 columns containing information related to ride id, ridership type, ride time, start location and end location, geographic coordinates, etc.
 
 ## Credibility of the Data
-The data is collected directly by Motivate, Inc., the company that runs the Cyclistic Bike Share program for the City of Chicago. The data is comprehensive in that it consists of data for all the rides taken on the system and is not just a sample of the data. The data is current. It is released monthly and, as of August 2021, was current to July 2021. The City of Chicago makes the data available to the public.
+The [data](https://divvy-tripdata.s3.amazonaws.com/index.html) is collected directly by Motivate, Inc., the company that runs the Cyclistic Bike Share program for the City of Chicago. The data is comprehensive in that it consists of data for all the rides taken on the system and is not just a sample of the data. The data is current. It is released monthly and, as of August 2021, was current to July 2021. The City of Chicago makes the data available to the public.
 
 ## Licensing, privacy, security, and accessibility
 This data is anonymized as it has been stripped of all identifying information. This ensures privacy, but it limits the extent of the analysis possible. There is not enough data to determine if casual riders are repeat riders or if casual riders are residents of the Chicago area. The data is released under this [license](https://ride.divvybikes.com/data-license-agreement).
