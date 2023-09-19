@@ -1,5 +1,5 @@
 # Google Data Analytics Capstone: Cyclistic Case Study
-[divvy bikes](https://dailynorthwestern.com/2016/06/29/city/divvy-bikes-debut-in-evanston/#photo)
+![Cyclist](https://github.com/kingstrybe/Google-Data-Analytics-Certificate-Course-Capstone-/assets/124252840/ed71176b-3aad-454d-bb98-2a222c775e03)
 ## About the company
 
 In 2016, Cyclistic launched a successful bike-share offering, which currently holds more than 5,000 geo-tracked bicycles in a network of 692 stations across Chicago. The bicycles are unlockable in their respective station and can be returned to any other station in the system time.
