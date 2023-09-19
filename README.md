@@ -129,24 +129,33 @@ Figure 2.
 
 ![Overview 2](https://github.com/kingstrybe/kingstrybe/assets/124252840/058ea18d-ca63-42fb-9063-a764d0023210)
 Figure 3.
-Trips by Time/Day/Month
+
+# Trips by Time/Day/Month
+
+![Screenshot (189)](https://github.com/kingstrybe/kingstrybe/assets/124252840/49215b47-5745-4532-8898-afa8ff0fe6dc)
 Graph showing start hours for casual and member riders.  Member riders have three peak times - the highest at 5 p.m., another peak at lunchtime, and another peak at 8 a.m.  The number of casual rides increases during the day and peaks at 5 pm
 Figure 4
+
 The number of trips made by casual riders increases over the day, peaking at 5 p.m. Member trips also peak at 5 p.m. but there are two smaller peaks earlier in the day at 8 a.m. and lunchtime, which corresponds with the work day.
 
-
+![Trips by day of the week](https://github.com/kingstrybe/kingstrybe/assets/124252840/0bd558e0-d3f5-4f67-8580-e0f5f0c82976)
 Figure 5.
 Figure 5 shows that weekend days are popular with casual riders whereas member rider trips are spread out more evenly throughout the week.
 
-
+![Screenshot (186)](https://github.com/kingstrybe/kingstrybe/assets/124252840/d655b020-047c-4ea6-bfc1-e2ad13597c3d)
 Figure 6.
 The winter months (December, January, and February) see very few rides. The summer months are popular with both types of riders. July is the busiest month for casual riders.
 
-Station Usage
+# Station Usage
 Member and casual riders also differ in the stations that are popular for starting and ending their rides.
 
 Top starting and destination stations for casual riders cluster around tourist destinations within about 1 km of the lakefront from Lincoln Park in the north to the Field Museum in the south. Member riders' top stations are more spread out and reflect office locations.
 
+![screen-shot-2021-09-15-at-5 16 20-pm](https://github.com/kingstrybe/kingstrybe/assets/124252840/b1947477-e4f2-465f-88f8-06bd0f695205)
+Figure 7
+
+![screen-shot-2021-09-15-at-7 47 38-pm](https://github.com/kingstrybe/kingstrybe/assets/124252840/db77b001-8205-4aec-976e-04181020ad8d)
+Figure 8
 
 ## Recommendations
 
